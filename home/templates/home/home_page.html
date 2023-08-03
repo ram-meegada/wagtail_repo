@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+    {% image self.home_image width-1500 as img %}
+    <div class="jumbotron" style="background-image: url('{{ img.url }}'); background-size: auto; height: 250px; background-position: centre centre; color: #04f504 !important">
+        <h1 class="display-4">{{ self.title }}</h1>
+        <div class="lead">{{ self.body|richtext }}</div>
+        {% if slef.some_url %}
+            <a class="btn btn-primary btn-lg" href="#" role="button">todo</a>
+        {% endif %}    
+    </div>
+
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for ig in self.home_images.all %}
+                {% image ig.photos original as imgg %}
+                <div class="carousel-item{% if forloop.first %} active {% endif %}">
+                    <img src="{{ imgg.url }}" class="d-block w-100" alt="{{ imgg.alt }}" style="height:500px; width:250px; margin:20px">
+                </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+Site Settings:- 
+<a href="{{ settings.site_settings.SocialMediaSettings.facebook }}"><i class="fab fa-facebook"></i></a>
+<a href="{{ settings.site_settings.SocialMediaSettings.google }}"><i class="fab fa-google"></i></a>
+<a href="{{ settings.site_settings.SocialMediaSettings.twitter }}"><i class="fab fa-twitter"></i></a>
+
+    {% for i in page.content %}
+        {% include_block i %}
+    {% endfor %}    
+    <footer>
+        <div class="footer" style="background-color: #04f504; height: 100px; margin:50px">
+            <div class="row" style="margin: 5px;">
+                {% for foot in self.footer_links.all %}
+                    <div class="col-sm-4">
+                        <a href="{{ foot.links.url }}" style="color: black">{{ foot.name_of_page }}</a>
+                    </div>
+                {% endfor %}    
+            </div>
+        </div>
+    </footer>
+{% endblock %}

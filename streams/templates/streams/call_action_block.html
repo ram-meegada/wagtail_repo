@@ -1,0 +1,7 @@
+{% load wagtailcore_tags %}
+
+<div style="margin-left:50px; margin-top:10px; margin-right:50px">
+    <h3>{{ self.title }}</h3>
+    {{ self.text|richtext }}
+    <a href="{{ self.button }}">{{ self.button_text }}</a><br>
+</div>

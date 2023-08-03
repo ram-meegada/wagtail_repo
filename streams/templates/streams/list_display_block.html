@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+</head>
+<body>
+    {% load wagtailimages_tags %}
+    <div class="container">
+        <h2 style="text-align: center;">{{ self.title }}</h2> 
+        <div>
+            {% for i in self.list_blocks %}
+                {% image i.image fill-200x200 as img %}
+                <div class="card" style="width:250px; display:inline-block; text-align: center; margin: 10px;">
+                    <img src="{{ img.url }}" alt="{{ img.alt }}" class="card-img-top" style="width: 200px; height: 200px;  margin-top: 10px;">
+                    <div class="card-body">
+                        <h3>{{ i.title }}</h3>
+                        <p>{{ i.text }}</p>
+                        <a href="{{ i.link }}">Link</a>
+                    </div> 
+                </div>       
+            {% endfor %}
+        </div>    
+    </div>
+</body>
+</html>

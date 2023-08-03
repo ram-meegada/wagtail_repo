@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block content %}
+    <div>
+        <h3>{{ self.custom_title }}</h3>
+        {% image self.blog_image original as im %}
+        <img src="{{ im.url }}" alt="{{ im.alt }}" style="height:500px; width:250px; margin:20px">
+        {% for blck in self.content %}
+            {% include_block blck %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    <div class="container">
+        <h3>{{ self.custom_title }}</h3>
+        {% for pst in posts %}
+            <div class="row">
+                <div class="col-sm-4">
+                    {% image pst.blog_image original as imag %}
+                    <img src="{{ imag.url }}" alt="{{ imag.alt }}" style="height: 100px; width: 100px">
+                </div>
+                <div class="col-sm-8">
+                    <a href="{{ pst.url }}">
+                        {{ pst.custom_title }}
+                    </a>
+                </div>
+            </div><br>
+        {% endfor %}
+    </div>
+{% endblock %}
