@@ -10,8 +10,6 @@ class TitleAndTextBlock(blocks.StructBlock):
         template = "streams/title_and_text_block.html"
         icon = "user"
         label = "Title And Text"
-
-
 class SpecialityAndHabitsBlock(blocks.StructBlock):
     speciality = blocks.CharBlock(max_length=255, help_text="Add speciality", null=True, blank=True)
     habits = blocks.CharBlock(max_length=255, help_text="Add habits", null=True, blank=True)
